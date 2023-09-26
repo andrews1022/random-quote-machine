@@ -1,4 +1,4 @@
-import getAllQuotes from "./getAllQuotes";
+import { getAllQuotes } from "./getAllQuotes";
 import type { Quote } from "@/types";
 
 // keep track of some state outside the function
@@ -10,7 +10,7 @@ const previousQuoteState = {
   }
 };
 
-const getRandomQuote = async (): Promise<Quote> => {
+export const getRandomQuote = async (): Promise<Quote> => {
   const results = await getAllQuotes();
 
   let randomIndex = previousQuoteState.previous;
@@ -23,5 +23,3 @@ const getRandomQuote = async (): Promise<Quote> => {
 
   return results[randomIndex];
 };
-
-export default getRandomQuote;

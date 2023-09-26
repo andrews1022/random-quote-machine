@@ -6,7 +6,7 @@ import { config } from "@/db/config";
 import { quotes, authors, categories } from "@/db/schema";
 import type { Quote } from "@/types";
 
-const getAllQuotes = async (): Promise<Quote[]> => {
+export const getAllQuotes = async (): Promise<Quote[]> => {
   // connect to the database
   const connection = connect(config);
   const database = drizzle(connection);
@@ -22,6 +22,8 @@ const getAllQuotes = async (): Promise<Quote[]> => {
     .innerJoin(authors, eq(quotes.authorId, authors.id))
     .innerJoin(categories, eq(quotes.categoryId, categories.id));
 
+  // const result = await db.select().from(users).innerJoin(pets, eq(users.id, pets.ownerId))
+
   // raw SQL query for comparison:
   // SELECT A.author, C.category, Q.quote
   // FROM quotes Q
@@ -30,5 +32,3 @@ const getAllQuotes = async (): Promise<Quote[]> => {
 
   return results;
 };
-
-export default getAllQuotes;
