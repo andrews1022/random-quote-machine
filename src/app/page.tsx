@@ -1,5 +1,5 @@
+import Quote from "@/components/Quote";
 import { getRandomQuote } from "@/lib/getRandomQuote";
-import Quote from "./components/Quote";
 
 const HomePage = async () => {
   const randomQuote = await getRandomQuote();
